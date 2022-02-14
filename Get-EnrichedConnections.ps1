@@ -1,3 +1,6 @@
+<#
+Enumerate network connections and enrich data with Process Names, CommandLine Arguments and Start Time
+#>
 function Get-EnrichedConnections{
     $results = Invoke-Command { netstat -ano } | Select-String -Pattern '::','\]:','Active','Proto','\s+$' -NotMatch
     $results | % {
