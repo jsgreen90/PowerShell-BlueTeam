@@ -8,6 +8,13 @@ Function Read-AltDataStreams {
         [Parameter(Mandatory = $true, HelpMessage = 'Please Enter the FULL PATH of the directory you would like to analyze' )]$DirectoryPath,
         [switch] $Recurse 
     )
+    
+    #Make sure directory exists
+    if (!(Test-Path $DirectoryPath))
+    {
+        Write-Output "Cannot find target directory!"
+        exit
+    }
 
     $StreamFiles = Get-ChildItem $DirectoryPath -Recurse:$Recurse
     foreach ($File in $StreamFiles)
