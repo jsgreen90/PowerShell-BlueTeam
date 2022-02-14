@@ -1,4 +1,4 @@
-function Get-Connections{
+function Get-EnrichedConnections{
     $results = Invoke-Command { netstat -ano } | Select-String -Pattern '::','\]:','Active','Proto','\s+$' -NotMatch
     $results | % {
        $socket = $_
