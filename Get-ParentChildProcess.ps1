@@ -1,3 +1,6 @@
+<#
+Identify Parent/Child process Relationships
+#>
 Function Get-ParentChildProcess {
 
     $runningprocesses = Get-CimInstance -ClassName Win32_Process | 
