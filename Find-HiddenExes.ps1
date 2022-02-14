@@ -1,3 +1,6 @@
+<#
+Find Windows Executables based on byte code that may be obfuscated using simply changing the file extension
+#>
 Function Find-HiddenExes {
 
     [CmdletBinding()]
