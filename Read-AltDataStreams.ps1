@@ -1,3 +1,6 @@
+<#
+Find hidden/alternate Data Streams for files, excluding :$DATA which is present in every NTFS File
+#>
 Function Read-AltDataStreams {
 
     [CmdletBinding()]
