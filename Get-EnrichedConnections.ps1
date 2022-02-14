@@ -14,7 +14,7 @@ function Get-EnrichedConnections{
                                         @{N='PID';E={$Matches['PID']}},
                                         @{N='ProcessName';E={[System.Diagnostics.Process]::GetProcessById([int]$Matches['PID']).ProcessName};},
                                         @{N='ProcessBornDate';E={Get-UnixDateTime -DateTime ([System.Diagnostics.Process]::GetProcessById([int]$Matches['PID']).StartTime)};}
-                                        @{N= 'ProcessCMDLine';E={Get-CimInstance -ClassName Win32_Process | Where-Object ProcessId -EQ $Matches['PID'] | Select-Object CommandLine}}
+                                        @{N='ProcessCMDLine';E={Get-CimInstance -ClassName Win32_Process | Where-Object ProcessId -EQ $Matches['PID'] | Select-Object CommandLine}}
           }
   
       }
