@@ -2,7 +2,6 @@
 Local Native memory dump
 #>
 Function Get-LocalMemDump {
-
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true, HelpMessage = 'Please Enter the FULL PATH of the destination for your dumpfile, including filename' )]$DestPath
