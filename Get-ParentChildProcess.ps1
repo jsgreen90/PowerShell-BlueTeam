@@ -11,9 +11,9 @@ Function Get-ParentChildProcess {
         $runningprocesses[$i]
     
         Write-Host("Process:")
-        (Get-CimInstance -ClassName Win32_Process | Where-Object ProcessId -EQ $runningprocesses[$i].OwningProcess).ProcessName
+        (Get-CimInstance -ClassName Win32_Process | Where-Object ProcessId -EQ $runningprocesses[$i].ProcessId).ProcessName
         Write-Host("CMDLine:")
-        (Get-CimInstance -ClassName Win32_Process | Where-Object ProcessId -EQ $runningprocesses[$i].OwningProcess).CommandLine
+        (Get-CimInstance -ClassName Win32_Process | Where-Object ProcessId -EQ $runningprocesses[$i].ProcessId).CommandLine
         Write-Host ("Parent:")
         (Get-CimInstance -ClassName Win32_Process | Where-Object ProcessId -EQ $runningprocesses[$i].ParentProcessId).ProcessName
         Write-Host("Parent CMDLine:")
