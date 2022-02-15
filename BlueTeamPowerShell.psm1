@@ -203,5 +203,5 @@ Function Find-SDDLHiddenServices {
 }
 
 Export-ModuleMember -Function Find-SDDLHiddenServices, Get-ActiveServiceDLLHashes, Get-SuspiciousTasks, Get-Connections,
-    Read-AltDataStreams, Get-LocalMemDump, Get-ParentChildProcess, Get-EnrichedPList, Get-UserPSHistory, Find-UnsignedDLLs,
+    Read-AltDataStreams, Get-LocalMemDump, Get-ParentChildProcess, Get-UserPSHistory, Find-UnsignedDLLs,
     Find-SusFilterDrivers, Find-HiddenExes
