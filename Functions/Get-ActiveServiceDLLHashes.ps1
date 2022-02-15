@@ -1,7 +1,7 @@
 <#
 This will get the hash of the Service DLLs with the DLL Name/Path for active services
 #>
-Function Hash-ActiveServiceDLLs {
+Function Get-ActiveServiceDLLHashes {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true, HelpMessage = 'Please Enter the Algorithm you wish to use with -Algorithm' )]$Algorithm
