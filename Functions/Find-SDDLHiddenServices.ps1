@@ -10,7 +10,7 @@ Function Find-SDDLHiddenServices {
 
     foreach ($SDDLService in $SDDLServices)
     {
-        Get-Service -Name $SDDLService | fl *
+        Get-CimInstance -ClassName CIM_Service | where Name -EQ $SDDLService | fl *
     }
 
     
