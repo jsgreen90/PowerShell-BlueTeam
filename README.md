@@ -12,7 +12,7 @@ Import the data file:
 Import-Module PowerShellBlueTeam.psd1
 ```
 
-##Syntax Examples
+## Syntax Examples
 Alternate Data Streams:
 ```
 Read-AltDataStreams -DirectoryPath C:\Temp -Recurse
