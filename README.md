@@ -13,10 +13,7 @@ Import-Module PowerShellBlueTeam.psd1
 ```
 
 ## Syntax Examples
-Alternate Data Streams:
-```
-Read-AltDataStreams -DirectoryPath C:\Temp -Recurse
-```
+
 Local Memory Dumps:
 ```
 Get-LocalMemDump -DestPath C:\Users\admin\Documents\notepad.dmp
@@ -25,3 +22,8 @@ Finding Obfuscated File Extensions:
 ```
 Find-HiddenExes -DirPath C:\Windows -Recurse
 ```
+Alternate Data Streams:
+```
+Read-AltDataStreams -DirectoryPath C:\Temp -Recurse
+```
+![output](/images/datastreamex.jpg)
