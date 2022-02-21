@@ -6,7 +6,22 @@ Some of them I wrote myself, some I took snippets of from other functions, and s
 
 The goal after all functions are created is to cover some digital forensics, some threat hunting, and some basic malware analysis. These techniques can be mapped back to the Mitre Attack Matrix for TTP chaining and to possibly help with attribution.
 
-Importing:
+## Importing
+Import the data file:
 ```
 Import-Module PowerShellBlueTeam.psd1
+```
+
+##Syntax Examples
+Alternate Data Streams:
+```
+Read-AltDataStreams -DirectoryPath C:\Temp -Recurse
+```
+Local Memory Dumps:
+```
+Get-LocalMemDump -DestPath C:\Users\admin\Documents\notepad.dmp
+```
+Finding Obfuscated File Extensions:
+```
+Find-HiddenExes -DirPath C:\Windows -Recurse
 ```
