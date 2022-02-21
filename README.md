@@ -16,7 +16,7 @@ Import-Module PowerShellBlueTeam.psd1
 
 Local Memory Dumps:
 ```
-Get-LocalMemDump -DestPath C:\Users\admin\Documents\notepad.dmp
+Get-LocalMemDump -DestPath C:\Users\admin\Documents\user.dmp
 ```
 Finding Obfuscated File Extensions:
 ```
