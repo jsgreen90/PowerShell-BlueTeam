@@ -12,9 +12,9 @@ In this example, process memory data is displayed from the local machine.
 Name                                Path                            Procesess        Usage/MB      Percentage
 ----                                ----                            ---------        --------      ----------
 chrome                              C:\Program Files (x86)\Goog...         29        3,578.19          32.45%
-Teams                               C:\Users\micha\AppData\Loca...          9        1,295.24          11.75%
+Teams                               C:\Users\user\AppData\Loca...          9        1,295.24          11.75%
 svchost                             svchost                                78          899.66           8.16%
-Code                                C:\Users\micha\AppData\Loca...          8          838.29           7.60%
+Code                                C:\Users\user\AppData\Loca...          8          838.29           7.60%
 powershell_ise                      C:\WINDOWS\system32\Windows...          1          582.86           5.29%
 ....
 .EXAMPLE
