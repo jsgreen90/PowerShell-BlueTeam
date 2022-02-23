@@ -528,6 +528,20 @@ Function Get-RunningProcessHashes{
     Get-Process | Select-Object -Property name, path, @{n="Hash"; e={(Get-FileHash -Path $_.path).hash}}
 }
 
+function Get-EnrichedProcesses {
+  $ProcInfo1 = Get-WmiObject win32_process | select processname, ProcessId, CommandLine | Sort-Object processname
+  foreach ($proc in $ProcInfo1){
+   $ProcInfo2 = Get-Process -Id $proc.ProcessId -IncludeUserName | Select-Object UserName
+   $FullProcInfo = New-Object -TypeName psobject -Property @{
+    PID = $proc.ProcessId
+    User = $ProcInfo2.UserName
+    ProcessName = $proc.processname
+    CommandLine = $proc.CommandLine
+    }
+   $FullProcInfo
+  }
+}
+
 Export-ModuleMember -Function Find-SDDLHiddenServices, Get-ActiveServiceDLLHashes, Get-SuspiciousTasks, Get-Connections, Read-AltDataStreams, 
 Get-LocalMemDump, Get-ParentChildProcess, Get-UserPSHistory, Find-UnsignedDLLs, Find-SusFilterDrivers, Find-HiddenExes, Get-PrivEscInfo,
-Get-SuspiciousPowerShellCommand, Get-DecodedBase64, Get-ProcessTree, Get-ProcessMemory, Show-ProcessMemory, Get-RunningProcessHashes
+Get-SuspiciousPowerShellCommand, Get-DecodedBase64, Get-ProcessTree, Get-ProcessMemory, Show-ProcessMemory, Get-RunningProcessHashes, Get-EnrichedProcesses
