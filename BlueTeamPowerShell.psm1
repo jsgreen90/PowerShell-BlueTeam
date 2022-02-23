@@ -549,7 +549,28 @@ function Get-UnsignedDLLs {
     $c
 }
 
+function Get-UserInitLogonScripts {
+    $logonScriptsArrayList = [System.Collections.ArrayList]@();
+                 
+    New-PSDrive HKU Registry HKEY_USERS -ErrorAction SilentlyContinue | Out-Null;
+    Set-Location HKU: | Out-Null;
+
+    $SIDS  += Get-ChildItem -Path HKU: | where {$_.Name -match 'S-\d-\d+-(\d+-){1,14}\d+$'} | foreach {$_.PSChildName };
+
+    foreach($SID in $SIDS){
+       $logonscriptObject = [PSCustomObject]@{
+           SID =""
+           HasLogonScripts = ""
+    
+       };
+       $logonscriptObject.sid = $SID; 
+       $logonscriptObject.haslogonscripts = !((Get-ItemProperty HKU:\$SID\Environment\).userinitmprlogonscript -eq $null); 
+       $logonScriptsArrayList.add($logonscriptObject) | out-null
+       }
+    $logonScriptsArrayList
+}
+
 Export-ModuleMember -Function Find-SDDLHiddenServices, Get-ActiveServiceDLLHashes, Get-SuspiciousTasks, Get-Connections, Read-AltDataStreams, 
 Get-LocalMemDump, Get-ParentChildProcess, Get-UserPSHistory, Find-UnsignedDLLs, Find-SusFilterDrivers, Find-HiddenExes, Get-PrivEscInfo,
 Get-SuspiciousPowerShellCommand, Get-DecodedBase64, Get-ProcessTree, Get-ProcessMemory, Show-ProcessMemory, Get-RunningProcessHashes, Get-EnrichedProcesses,
-Get-UnsignedDLLs
+Get-UnsignedDLLs, Get-UserInitLogonScripts
