@@ -1,6 +1,6 @@
 <#
 Find Drivers used by current processes that are unsigned
 #>
-Function Find-UnsignedDLLs {
+Function Get-ActiveUnsignedDLLs {
     (gps).Modules.FileName | get-authenticodesignature | ? Status -NE "Valid"
 }
