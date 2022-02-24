@@ -94,7 +94,7 @@ Function Get-UserPSHistory {
 }
 }
 
-Function Find-UnsignedDLLs {
+Function Get-ActiveUnsignedDLLs {
     (gps).Modules.FileName | get-authenticodesignature | ? Status -NE "Valid"
 }
 
@@ -571,6 +571,6 @@ function Get-UserInitLogonScripts {
 }
 
 Export-ModuleMember -Function Find-SDDLHiddenServices, Get-ActiveServiceDLLHashes, Get-SuspiciousTasks, Get-Connections, Read-AltDataStreams, 
-Get-LocalMemDump, Get-ParentChildProcess, Get-UserPSHistory, Find-UnsignedDLLs, Find-SusFilterDrivers, Find-HiddenExes, Get-PrivEscInfo,
+Get-LocalMemDump, Get-ParentChildProcess, Get-UserPSHistory, Get-ActiveUnsignedDLLs, Find-SusFilterDrivers, Find-HiddenExes, Get-PrivEscInfo,
 Get-SuspiciousPowerShellCommand, Get-DecodedBase64, Get-ProcessTree, Get-ProcessMemory, Show-ProcessMemory, Get-RunningProcessHashes, Get-EnrichedProcesses,
 Get-UnsignedDLLs, Get-UserInitLogonScripts
