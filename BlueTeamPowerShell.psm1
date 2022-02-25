@@ -580,7 +580,11 @@ function Get-TaskHashes {
     foreach ($b in $a){Get-FileHash -Algorithm $HashAlg ([System.Environment]::ExpandEnvironmentVariables($b))}
 }
 
+function Get-UnsignedDrivers {
+    gci -path C:\Windows\System32\drivers -include *.sys -recurse -ea SilentlyContinue | Get-AuthenticodeSignature | where {$_.status -ne 'Valid'}
+}
+
 Export-ModuleMember -Function Find-SDDLHiddenServices, Get-ActiveServiceDLLHashes, Get-SuspiciousTasks, Get-Connections, Read-AltDataStreams, 
 Get-LocalMemDump, Get-ParentChildProcess, Get-UserPSHistory, Get-ActiveUnsignedDLLs, Find-SusFilterDrivers, Find-HiddenExes, Get-PrivEscInfo,
 Get-SuspiciousPowerShellCommand, Get-DecodedBase64, Get-ProcessTree, Get-ProcessMemory, Show-ProcessMemory, Get-RunningProcessHashes, Get-EnrichedProcesses,
-Get-UnsignedDLLs, Get-UserInitLogonScripts, Get-TaskHashes
+Get-UnsignedDLLs, Get-UserInitLogonScripts, Get-TaskHashes, Get-UnsignedDrivers
