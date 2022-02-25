@@ -72,7 +72,7 @@ Description = 'Assist in Blue Team/Threat Hunting investigations by automating c
 FunctionsToExport = @('Find-SDDLHiddenServices', 'Get-ActiveServiceDLLHashes', 'Get-SuspiciousTasks', 'Get-Connections', 'Read-AltDataStreams', 'Get-LocalMemDump', 
 'Get-ParentChildProcess', 'Get-UserPSHistory', 'Get-ActiveUnsignedDLLs', 'Find-SusFilterDrivers', 'Find-HiddenExes', 'Get-PrivEscInfo', 'Get-SuspiciousPowerShellCommand', 
 'Get-DecodedBase64', 'Get-ProcessTree', 'Get-ProcessMemory', 'Show-ProcessMemory', 'Get-RunningProcessHashes', 'Get-EnrichedProcesses', 'Get-UnsignedDLLs',
-'Get-UserInitLogonScripts', 'Get-TaskHashes', 'Get-UnsignedDrivers')
+'Get-UserInitLogonScripts', 'Get-TaskHashes', 'Get-UnsignedDrivers', 'Get-WmiNamespace')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
