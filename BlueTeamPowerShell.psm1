@@ -570,7 +570,17 @@ function Get-UserInitLogonScripts {
     $logonScriptsArrayList
 }
 
+function Get-TaskHashes {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true, HelpMessage = 'Please Enter the hashing algorithm you would like to use' )]$HashAlg
+    )
+
+    $a=((gci C:\windows\system32\tasks -Recurse | Select-String "<Command>" | select -exp Line).replace("<Command>","").trim("</Command>").replace("`"","").trim());
+    foreach ($b in $a){Get-FileHash -Algorithm $HashAlg ([System.Environment]::ExpandEnvironmentVariables($b))}
+}
+
 Export-ModuleMember -Function Find-SDDLHiddenServices, Get-ActiveServiceDLLHashes, Get-SuspiciousTasks, Get-Connections, Read-AltDataStreams, 
 Get-LocalMemDump, Get-ParentChildProcess, Get-UserPSHistory, Get-ActiveUnsignedDLLs, Find-SusFilterDrivers, Find-HiddenExes, Get-PrivEscInfo,
 Get-SuspiciousPowerShellCommand, Get-DecodedBase64, Get-ProcessTree, Get-ProcessMemory, Show-ProcessMemory, Get-RunningProcessHashes, Get-EnrichedProcesses,
-Get-UnsignedDLLs, Get-UserInitLogonScripts
+Get-UnsignedDLLs, Get-UserInitLogonScripts, Get-TaskHashes
