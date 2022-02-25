@@ -584,7 +584,17 @@ function Get-UnsignedDrivers {
     gci -path C:\Windows\System32\drivers -include *.sys -recurse -ea SilentlyContinue | Get-AuthenticodeSignature | where {$_.status -ne 'Valid'}
 }
 
+function Get-WmiNamespace {
+    # usage = Get-wminamespace -Recurse
+	foreach ($Namespace in (Get-WmiObject -Namespace $Path -Class __Namespace))
+	{
+		$FullPath = $Path + "/" + $Namespace.Name
+		Write-Output $FullPath
+		Get-WmiNamespace -Path $FullPath
+	}
+}
+
 Export-ModuleMember -Function Find-SDDLHiddenServices, Get-ActiveServiceDLLHashes, Get-SuspiciousTasks, Get-Connections, Read-AltDataStreams, 
 Get-LocalMemDump, Get-ParentChildProcess, Get-UserPSHistory, Get-ActiveUnsignedDLLs, Find-SusFilterDrivers, Find-HiddenExes, Get-PrivEscInfo,
 Get-SuspiciousPowerShellCommand, Get-DecodedBase64, Get-ProcessTree, Get-ProcessMemory, Show-ProcessMemory, Get-RunningProcessHashes, Get-EnrichedProcesses,
-Get-UnsignedDLLs, Get-UserInitLogonScripts, Get-TaskHashes, Get-UnsignedDrivers
+Get-UnsignedDLLs, Get-UserInitLogonScripts, Get-TaskHashes, Get-UnsignedDrivers, Get-WmiNamespace
