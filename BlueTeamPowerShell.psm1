@@ -600,7 +600,32 @@ function Get-WmiPersistence {
     Get-WmiObject -Class __EventConsumer -Namespace root\subscription
 }
 
+function Get-ItemsofInterest {
+    [CmdletBinding()]
+       param (
+           [Parameter(Mandatory = $true, HelpMessage = 'Please Enter the filename to output' )]$Output
+           )
+   
+   $commands = ('dir /s /b %localappdata%\*.exe | findstr /e .exe',
+                'dir /s /b %appdata%\*.exe | findstr /e .exe',
+                'dir /s /b %localappdata%\*.dll | findstr /e .dll',
+                'dir /s /b %appdata%\*.dll | findstr /e .dll',
+                'dir /s /b %localappdata%\*.bat | findstr /e .bat',
+                'dir /s /b "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\" | findstr /e .lnk',
+                'dir /s /b "C:\Users\Public\" | findstr /e .exe',
+                'dir /s /b "C:\Users\Public\" | findstr /e .lnk',
+                'dir /s /b "C:\Users\Public\" | findstr /e .dll',
+                'dir /s /b "C:\Users\Public\" | findstr /e .bat')
+   
+   foreach ($command in $commands)
+   {
+       Echo $command >> $Output
+       cmd.exe /c $command >> $Output
+       Echo "-----------------------------------------------------" >> $Output
+   }
+   } 
+   
 Export-ModuleMember -Function Find-SDDLHiddenServices, Get-ActiveServiceDLLHashes, Get-SuspiciousTasks, Get-Connections, Read-AltDataStreams, 
 Get-LocalMemDump, Get-ParentChildProcess, Get-UserPSHistory, Get-ActiveUnsignedDLLs, Find-SusFilterDrivers, Find-HiddenExes, Get-PrivEscInfo,
 Get-SuspiciousPowerShellCommand, Get-DecodedBase64, Get-ProcessTree, Get-ProcessMemory, Show-ProcessMemory, Get-RunningProcessHashes, Get-EnrichedProcesses,
-Get-UnsignedDLLs, Get-UserInitLogonScripts, Get-TaskHashes, Get-UnsignedDrivers, Get-WmiNamespace, Get-WmiPersistence
+Get-UnsignedDLLs, Get-UserInitLogonScripts, Get-TaskHashes, Get-UnsignedDrivers, Get-WmiNamespace, Get-WmiPersistence, Get-ItemsofInterest
