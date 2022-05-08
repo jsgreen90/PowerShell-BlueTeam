@@ -624,8 +624,27 @@ function Get-ItemsofInterest {
        Echo "-----------------------------------------------------" >> $Output
    }
    } 
-   
+
+function Find-RecentlyAccessedFiles {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory=$true, HelpMessage = 'Please enter the starting path for the directory you would like to check')]$DirectoryPath,
+        [switch]$Recurse
+    )
+    # Make sure the directory exists
+    if (!(Test-Path $DirectoryPath))
+    {
+        Write-Output "Cannot find target directory!"
+        exit
+    }
+    $folders = Get-ChildItem -Path $DirectoryPath -Directory -Recurse:$Recurse
+    foreach ($folder in $folders)
+    {
+        Get-ChildItem -Attributes !Directory | Sort-Object LastAccessTime -Descending | Select-Object FullName, LastAccessTime -First 3
+    }
+}
+
 Export-ModuleMember -Function Find-SDDLHiddenServices, Get-ActiveServiceDLLHashes, Get-SuspiciousTasks, Get-Connections, Read-AltDataStreams, 
 Get-LocalMemDump, Get-ParentChildProcess, Get-UserPSHistory, Get-ActiveUnsignedDLLs, Find-SusFilterDrivers, Find-HiddenExes, Get-PrivEscInfo,
 Get-SuspiciousPowerShellCommand, Get-DecodedBase64, Get-ProcessTree, Get-ProcessMemory, Show-ProcessMemory, Get-RunningProcessHashes, Get-EnrichedProcesses,
-Get-UnsignedDLLs, Get-UserInitLogonScripts, Get-TaskHashes, Get-UnsignedDrivers, Get-WmiNamespace, Get-WmiPersistence, Get-ItemsofInterest
+Get-UnsignedDLLs, Get-UserInitLogonScripts, Get-TaskHashes, Get-UnsignedDrivers, Get-WmiNamespace, Get-WmiPersistence, Get-ItemsofInterest, Find-RecentlyAccessedFiles
